@@ -1,20 +1,17 @@
-function checksLength(str, quantityChars) {
-  return str.length <= quantityChars;
-}
+const checksLength = (str, quantityChars) => str.length <= quantityChars;
 
-function checksPalindrome(str) {
+const checksPalindrome = (str) => {
   const normalStr = (str.toLowerCase()).replaceAll(' ', '');
   let reverseStr = '';
   for (let i = normalStr.length - 1; i >= 0; i--) {
     reverseStr += normalStr[i];
   }
   return normalStr === reverseStr;
-}
+};
 
-function extractsDigits(str) {
+const extractsDigits = (str) => {
   if (Number.isInteger(str)) {
     str = str.toString();
-    console.log(typeof str);
   }
 
   let strFromDigits = '';
@@ -24,8 +21,5 @@ function extractsDigits(str) {
     }
   }
   return strFromDigits === '' ? NaN : strFromDigits;
-}
+};
 
-console.log(checksLength('uuuu', 10));
-console.log(checksPalindrome('444'));
-console.log(extractsDigits('ertveerr'));
