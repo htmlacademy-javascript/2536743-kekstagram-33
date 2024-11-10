@@ -16,7 +16,6 @@ const createIdGenerator = () => {
 
 const generatePhotoId = createIdGenerator();
 const COUNT_PHOTO = 25;
-let photos;
 
 const COMMENTS = [
   'Всё отлично!',
@@ -37,12 +36,12 @@ const AVATAR_NAMES = [
   'Кристина'
 ];
 
-function Comment(num) {
+const Comment = function(num) {
   this.id = num;
   this.avatar = `img/avatar-${getRandomInteger(1, 6)}.svg`;
   this.message = COMMENTS[getRandomInteger(0, COMMENTS.length - 1)];
   this.name = AVATAR_NAMES[getRandomInteger(0, AVATAR_NAMES.length - 1)];
-}
+};
 
 const getComments = () => {
   const commentsCount = getRandomInteger(0, 30);
@@ -53,13 +52,13 @@ const getComments = () => {
   return comments;
 };
 
-function Photo() {
+const Photo = function() {
   this.id = generatePhotoId();
   this.url = `photos/${this.id}.jpg`;
-  this. description = 'На этой фотографии изображено то, что я сфотографировал';
+  this.description = 'На этой фотографии изображено то, что я сфотографировал';
   this.likes = getRandomInteger(15, 200);
   this.comments = getComments();
-}
+};
 
 const getPhotos = (count) => {
   const photos = [];
