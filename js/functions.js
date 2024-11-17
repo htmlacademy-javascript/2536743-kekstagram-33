@@ -38,7 +38,7 @@ const checksMeeting = (startDay, endDay, startMeeting, durationMeeting) => {
 
 checksLength('string', 6);
 checksPalindrome('потоп');
-extractsDigits('333hhh333');
+extractsDigits('333hh333');
 checksMeeting('8:00', '17:30', '08:00', 900);
 
 
