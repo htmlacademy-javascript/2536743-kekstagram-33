@@ -7,6 +7,7 @@ const COMMENTS_COUNT_MIN = 0;
 const COMMENTS_COUNT_MAX = 30;
 const LIKES_COUNT_MIN = 15;
 const LIKES_COUNT_MAX = 200;
+const COUNT_PHOTO = 25;
 
 const COMMENTS = [
   'Всё отлично!',
@@ -51,10 +52,10 @@ function Photo() {
   this.comments = getComments();
 }
 
-const getPhotos = (count) => {
+const getPhotos = () => {
   const photos = [];
 
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < COUNT_PHOTO; i++) {
     photos[i] = new Photo();
   }
   return photos;
