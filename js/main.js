@@ -1,7 +1,4 @@
 import {getPhotos} from './data.js';
+import {renderThumbnails} from './rendering-thumbnails.js';
 
-const COUNT_PHOTO = 25;
-
-getPhotos(COUNT_PHOTO);
-
-
+renderThumbnails(getPhotos());
