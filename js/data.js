@@ -1,6 +1,5 @@
-import {getRandomInteger, createIdGenerator} from './util.js';
+import {getRandomInteger} from './util.js';
 
-const generatePhotoId = createIdGenerator();
 const AVATAR_ID_MIN = 1;
 const AVATAR_ID_MAX = 6;
 const COMMENTS_COUNT_MIN = 0;
@@ -28,6 +27,35 @@ const AVATAR_NAMES = [
   'Кристина'
 ];
 
+const DESCRIPTIONS = [
+  'Пляж с лежаками',
+  'Указатель на пляж',
+  'Море',
+  'Девушка на море',
+  'Две тарелки супа',
+  'Черная спортивная машина',
+  'Клубника на тарелке',
+  'Два стакана компота',
+  'Самолет над пляжем',
+  'Обувница',
+  'Песчаная дорога и забор',
+  'Белая ауди',
+  'Салат',
+  'Бутерброд из кота',
+  'Валенки',
+  'Вид из окна самолета',
+  'Оркестр',
+  'Ретро автомобиль',
+  'Светящиеся тапочки',
+  'Отель с пальмами',
+  'Блюдо',
+  'Закат на море',
+  'Краб',
+  'Дискотека',
+  'Внедорожник проезжает мимо бегемота'
+];
+
+
 function Comment(num) {
   this.id = num;
   this.avatar = `img/avatar-${getRandomInteger(AVATAR_ID_MIN, AVATAR_ID_MAX)}.svg`;
@@ -44,10 +72,10 @@ const getComments = () => {
   return comments;
 };
 
-function Photo() {
-  this.id = generatePhotoId();
-  this.url = `photos/${this.id}.jpg`;
-  this.description = 'На этой фотографии изображено то, что я сфотографировал';
+function Photo(id) {
+  this.id = id + 1;
+  this.url = `photos/${id + 1}.jpg`;
+  this.description = DESCRIPTIONS[id];
   this.likes = getRandomInteger(LIKES_COUNT_MIN, LIKES_COUNT_MAX);
   this.comments = getComments();
 }
@@ -56,9 +84,12 @@ const getPhotos = () => {
   const photos = [];
 
   for (let i = 0; i < COUNT_PHOTO; i++) {
-    photos[i] = new Photo();
+    photos[i] = new Photo(i);
   }
   return photos;
 };
 
-export {getPhotos};
+
+const photoSet = getPhotos();
+
+export {photoSet};

@@ -14,4 +14,8 @@ const createIdGenerator = () => {
   };
 };
 
-export {getRandomInteger, createIdGenerator};
+const toggleClass = (element, className) => {
+  element.classList.toggle(className);
+};
+
+export {getRandomInteger, createIdGenerator, toggleClass};
