@@ -45,8 +45,6 @@ const onPhotoListShowBigPicture = (evt) => {
     toggleClass(bigPicture, 'hidden');
     toggleClass(body, 'modal-open');
 
-    console.log(photoSet[id - 1]);
-
     bigPictureImg.src = photoSet[id - 1].url;
     bigPictureImg.alt = photoSet[id - 1].description;
     socialCaption.textContent = photoSet[id - 1].description;
