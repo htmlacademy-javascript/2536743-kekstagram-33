@@ -1,5 +1,7 @@
 import {getRandomInteger} from './util.js';
 
+// данные для создания набора фотографий
+
 const AVATAR_ID_MIN = 1;
 const AVATAR_ID_MAX = 6;
 const COMMENTS_COUNT_MIN = 0;

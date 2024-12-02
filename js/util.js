@@ -1,3 +1,5 @@
+//функция получения случайного целого числа
+
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -5,6 +7,7 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
+// функция для создания счетчиков на основе замыкания
 const createIdGenerator = () => {
   let lastGeneratedId = 0;
 
@@ -14,8 +17,4 @@ const createIdGenerator = () => {
   };
 };
 
-const toggleClass = (element, className) => {
-  element.classList.toggle(className);
-};
-
-export {getRandomInteger, createIdGenerator, toggleClass};
+export {getRandomInteger, createIdGenerator};

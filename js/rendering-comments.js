@@ -1,13 +1,15 @@
 const socialComment = document.querySelector('.social__comment');
 const socialComments = document.querySelector('.social__comments');
-const fragmentSocialComments = document.createDocumentFragment();
 
-const renderComments = (id, photoSet, countShown, countTotal) => {
+// функция по загрузке дополнительных комментариев
+
+const renderComments = (id, photoSet, countShown, countTotal, step) => {
+
+  const fragmentDownloadComments = document.createDocumentFragment();
   const count = countTotal <= countShown ? countTotal : countShown;
+  const countBegin = count % step === 0 ? count - 5 : Math.floor(count / step) * step;
 
-  socialComments.innerHTML = '';
-
-  for (let i = 0; i < count; i++) {
+  for (let i = countBegin; i < count; i++) {
     const commentItem = socialComment.cloneNode(true);
     const socialPicture = commentItem.querySelector('.social__picture');
     const socialText = commentItem.querySelector('.social__text');
@@ -16,10 +18,11 @@ const renderComments = (id, photoSet, countShown, countTotal) => {
     socialPicture.alt = photoSet[id - 1].comments[i].name;
     socialText.textContent = photoSet[id - 1].comments[i].message;
 
-    fragmentSocialComments.append(commentItem);
+    fragmentDownloadComments.append(commentItem);
   }
 
-  socialComments.append(fragmentSocialComments);
+  socialComments.append(fragmentDownloadComments);
 };
 
-export {renderComments};
+
+export {socialComments, renderComments};
