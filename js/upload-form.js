@@ -10,6 +10,8 @@ const imgUploadPreviewImg = imgUploadForm.querySelector('.img-upload__preview im
 // поля формы и элементы управления
 const imgUploadInput = imgUploadForm.querySelector('.img-upload__input');
 const scaleControlValue = imgUploadForm.querySelector('.scale__control--value');
+const scaleControlSmaller = imgUploadForm.querySelector('.scale__control--smaller');
+const scaleControlBigger = imgUploadForm.querySelector('.scale__control--bigger');
 const effectLevelValue = imgUploadForm.querySelector('.effect-level__value');
 const effectsRadio = imgUploadForm.querySelectorAll('.effects__radio');
 const textHashtags = imgUploadForm.querySelector('.text__hashtags');
@@ -28,6 +30,9 @@ imgUploadInput.addEventListener('change', onimgUploadInputChange);
 const imgUploadFormReset = () => {
   imgUploadInput.value = null;
   scaleControlValue.value = '100%';
+  imgUploadPreviewImg.style.transform = 'none';
+  scaleControlSmaller.disabled = false;
+  scaleControlBigger.disabled = false;
   effectLevelValue.value = '';
   for (let i = 0; i < effectsRadio.length; i++) {
     if(i !== 0) {
@@ -42,6 +47,7 @@ const imgUploadFormReset = () => {
 // функция закрытия окна редактирования по кнопке закрыть
 const onImgUploadCloseButtonClick = () => {
   closeModalWindow(imgUploadOverlay, body, onDocumentCloseByEscape);
+  imgUploadFormReset();
 };
 
 imgUploadCloseButton.addEventListener('click', onImgUploadCloseButtonClick);
@@ -56,6 +62,5 @@ function onDocumentCloseByEscape(evt) {
   }
 }
 
-export {imgUploadForm, imgUploadPreview, imgUploadPreviewImg,
-  textHashtags, textDescription
+export {imgUploadForm, imgUploadPreview, imgUploadPreviewImg, scaleControlValue, scaleControlSmaller, scaleControlBigger, textHashtags, textDescription
 };
