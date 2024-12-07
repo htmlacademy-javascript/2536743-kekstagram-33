@@ -1,6 +1,7 @@
 import {photoList} from './rendering-thumbnails.js';
 import {photoSet} from './data.js';
 import {socialComments, renderComments} from './rendering-comments';
+import {closeModalWindow} from './util.js';
 
 const body = document.querySelector('body');
 const bigPicture = document.querySelector('.big-picture');
@@ -14,40 +15,31 @@ const socialCommentsLoader = bigPicture.querySelector('.social__comments-loader'
 
 const SOCIAL_COMMENT_SHOWN_COUNT = 5;
 
-// функция закрытия окна с большой фотографией
-
-const closeBigPicture = () => {
-  bigPicture.classList.add('hidden');
-  body.classList.remove('modal-open');
-  socialCommentsLoader.classList.remove('hidden');
-  document.removeEventListener('keydown', onDocumentCloseByEscape);
-};
-
 // обработчик клика на кнопку "закрыть" в виде крестика
 
-function onBigPictureClose(evt) {
+function onBigPictureCloseButtonClick(evt) {
   evt.preventDefault();
-  closeBigPicture();
+  closeModalWindow(bigPicture, body, onDocumentCloseByEscape);
 }
 
 // вешаем обработчик на кнопку "закрыть" в виде крестика
 
-bigPictureCloseButton.addEventListener('click', onBigPictureClose);
+bigPictureCloseButton.addEventListener('click', onBigPictureCloseButtonClick);
 
 // обработчик при нажатии клавиши escape
 
 function onDocumentCloseByEscape(evt) {
   if (evt.key === 'Escape') {
-    closeBigPicture();
+    closeModalWindow(bigPicture, body, onDocumentCloseByEscape);
   }
 }
 
 const onPhotoListShowBigPicture = (evt) => {
   const thumnnail = evt.target.closest('.picture');
-  const id = thumnnail.dataset.id;
-  bigPicture.dataset.id = id; //для последующего использования при выводе следующих комментариев
 
   if (thumnnail) {
+    const id = thumnnail.dataset.id;
+    bigPicture.dataset.id = id; //для последующего использования при выводе следующих комментариев
     evt.preventDefault();
     bigPicture.classList.remove('hidden');
     body.classList.add('modal-open');
@@ -65,6 +57,7 @@ const onPhotoListShowBigPicture = (evt) => {
       socialCommentsLoader.classList.add('hidden');
     } else {
       socialCommentShownCount.textContent = SOCIAL_COMMENT_SHOWN_COUNT;
+      socialCommentsLoader.classList.remove('hidden');
     }
 
     socialComments.innerHTML = '';
@@ -78,7 +71,8 @@ const onPhotoListShowBigPicture = (evt) => {
 
 photoList.addEventListener('click', onPhotoListShowBigPicture);
 
-const onsocialCommentsLoaderClick = () => {
+// функция обработчик клика по кнопке загрузить ещё
+const onSocialCommentsLoaderClick = () => {
   const id = bigPicture.dataset.id;
   let countShown = +socialCommentShownCount.textContent + SOCIAL_COMMENT_SHOWN_COUNT;
   const countTotal = +socialCommentTotalCount.textContent;
@@ -95,6 +89,6 @@ const onsocialCommentsLoaderClick = () => {
 
 };
 
-socialCommentsLoader.addEventListener('click', onsocialCommentsLoaderClick);
+socialCommentsLoader.addEventListener('click', onSocialCommentsLoaderClick);
 
-export {photoSet};
+export {photoSet, body};

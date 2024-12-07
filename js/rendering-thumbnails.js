@@ -2,6 +2,7 @@ const templatePhoto = document.querySelector('#picture').content.querySelector('
 const fragmentThumbnails = document.createDocumentFragment();
 const photoList = document.querySelector('.pictures');
 
+//функция генерации миниатюр
 const renderThumbnails = (photosArray) => {
   photosArray.forEach(({id, url, description, likes, comments}) => {
     const newPhotoItem = templatePhoto.cloneNode(true);

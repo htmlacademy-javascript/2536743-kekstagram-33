@@ -17,4 +17,12 @@ const createIdGenerator = () => {
   };
 };
 
-export {getRandomInteger, createIdGenerator};
+// функция закрытия модального окна по нажатию на крестик
+
+const closeModalWindow = (modalWindow,...rest) => {
+  modalWindow.classList.add('hidden');
+  rest[0].classList.remove('modal-open');
+  document.removeEventListener('keydown', rest[1]);
+};
+
+export {getRandomInteger, createIdGenerator, closeModalWindow};
