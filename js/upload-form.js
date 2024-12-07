@@ -49,19 +49,13 @@ imgUploadCloseButton.addEventListener('click', onImgUploadCloseButtonClick);
 // обработчик при нажатии клавиши escape
 function onDocumentCloseByEscape(evt) {
   if (evt.key === 'Escape') {
-    imgUploadFormReset();
-    closeModalWindow(imgUploadOverlay, body, onDocumentCloseByEscape);
+    if (!(document.activeElement.classList.contains('text__hashtags') || document.activeElement.classList.contains('text__description'))){
+      imgUploadFormReset();
+      closeModalWindow(imgUploadOverlay, body, onDocumentCloseByEscape);
+    }
   }
 }
 
-const pristineConfig = {
-  classTo: 'img-upload__field-wrapper',
-  errorTextParent: 'img-upload__field-wrapper',
-  errorTextClass: 'img-upload__field-wrapper--error'
+export {imgUploadForm, imgUploadPreview, imgUploadPreviewImg,
+  textHashtags, textDescription
 };
-
-const pristine = new Pristine (imgUploadForm, pristineConfig);
-
-pristine.addvalidator(textHashtags, 'Неправильный хэштег');
-
-export {imgUploadPreview, imgUploadPreviewImg};
