@@ -13,6 +13,7 @@ const scaleControlValue = imgUploadForm.querySelector('.scale__control--value');
 const scaleControlSmaller = imgUploadForm.querySelector('.scale__control--smaller');
 const scaleControlBigger = imgUploadForm.querySelector('.scale__control--bigger');
 const effectLevelValue = imgUploadForm.querySelector('.effect-level__value');
+const effectLevelSlider = imgUploadForm.querySelector('.effect-level__slider');
 const effectsRadio = imgUploadForm.querySelectorAll('.effects__radio');
 const textHashtags = imgUploadForm.querySelector('.text__hashtags');
 const textDescription = imgUploadForm.querySelector('.text__description');
@@ -22,6 +23,8 @@ const onimgUploadInputChange = () => {
   body.classList.add('modal-open');
   imgUploadOverlay.classList.remove('hidden');
   document.addEventListener('keydown', onDocumentCloseByEscape);
+  effectLevelSlider.classList.add('hidden');
+
 };
 
 imgUploadInput.addEventListener('change', onimgUploadInputChange);
@@ -39,6 +42,7 @@ const imgUploadFormReset = () => {
       effectsRadio[i].checked = false;
     }
   }
+  imgUploadPreviewImg.style.filter = 'none';
   effectsRadio[0].checked = true;
   textHashtags.value = '';
   textDescription.value = '';
@@ -62,5 +66,5 @@ function onDocumentCloseByEscape(evt) {
   }
 }
 
-export {imgUploadForm, imgUploadPreview, imgUploadPreviewImg, scaleControlValue, scaleControlSmaller, scaleControlBigger, textHashtags, textDescription
+export {imgUploadForm, imgUploadPreview, imgUploadPreviewImg, scaleControlValue, scaleControlSmaller, scaleControlBigger, textHashtags, textDescription, effectLevelValue, effectLevelSlider, effectsRadio
 };
