@@ -47,7 +47,6 @@ const onEffectsRadioChange = (evt) => {
       effectLevelValue.value = 0;
       imgUploadPreviewImg.style.filter = 'none';
       effectLevelSlider.classList.add('hidden');
-      console.log('выбран оригинал');
       break;
     case 'effect-chrome' :
       sliderConfigChange(effectsConfig.effectChrome, 'grayscale');
